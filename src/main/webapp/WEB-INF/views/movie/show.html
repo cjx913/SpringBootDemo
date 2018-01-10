@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>show details</title>
+</head>
+<body>
+<h1>Movie Details</h1>
+<table width="85%">
+    <tr>
+        <td>num:</td>
+        <td th:text="${movie.id}"></td>
+    </tr>
+    <tr>
+        <td>name:</td>
+        <td th:text="${movie.name}"></td>
+    </tr>
+    <tr>
+        <td>show date:</td>
+        <td th:text="${#dates.format(movie.showDate,'yyyy年MM月dd日')}"></td>
+    </tr>
+    <tr>
+        <td>photo:</td>
+        <td><img th:src="${movie.photo}"/></td>
+    </tr>
+</table>
+<table>
+    <tr th:each="role:${movie.roles}">
+        <td><strong th:text="${role.actor.name}"></strong>&nbsp;饰演&nbsp;<strong th:text="${role.name}"></strong></td>
+    </tr>
+</table>
+</body>
+</html>

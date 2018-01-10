@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>movie_message</title>
+</head>
+<body>
+<h1 style="text-align: center">movie message</h1>
+<p><a href="/movie/create">create a new message</a></p>
+<div>
+    <form action="/movie/list" method="post">
+        movie name：<input type="text" name="name"/><input type="submit" value="search"/>
+    </form>
+</div>
+<table width="85%">
+    <thead>
+        <tr>
+            <th>num</th>
+            <th>name</th>
+            <th>show date</th>
+        </tr>
+    </thead>
+    <tbody style="text-align: center">
+        <tr th:each="movie:${movieList}">
+            <td th:text="${movie.id}"></td>
+            <td th:text="${movie.name}"></td>
+            <td th:text="${#dates.format(movie.showDate,'yyyy年MM月dd日')}"></td>
+            <td>
+                <a th:href="@{/movie/show(id=${movie.id})}">details</a>
+                &nbsp;
+                <a th:href="@{/movie/modify(id=${movie.id})}">modify</a>
+                &nbsp;
+                <a th:href="@{/movie/delete(id=${movie.id})}">delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>
